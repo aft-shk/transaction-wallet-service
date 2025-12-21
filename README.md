@@ -225,9 +225,7 @@ GET /orders/{orderId}
 
 
 //Prompts
-
-1).Design a minimal Spring Boot REST API architecture for a wallet-based transaction system with Admin and Client roles. The system should support wallet credit/debit, order creation, and order tracking using MySQL and JPA.
-2).Suggest JPA entity classes and database relationships for users, wallets, orders, and wallet ledger entries in a transactional wallet system. Focus on correctness and simplicity.
-3).How can I implement atomic wallet debit operations in Spring Boot using JPA and MySQL to prevent race conditions during concurrent order creation?
+1).Suggest JPA entity classes and database relationships for users, wallets, orders, and wallet ledger entries in a transactional wallet system. Focus on correctness and simplicity.
+2).How can I implement atomic wallet debit operations in Spring Boot using JPA and MySQL to prevent race conditions during concurrent order creation?
 
 
