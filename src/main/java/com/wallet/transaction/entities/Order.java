@@ -20,10 +20,11 @@ import lombok.Builder;
 @Entity
 @Table(name = "orders")
 @Builder
+
 public class Order {
 	
 	
-	public Order(Long id, String order_id, User user, BigDecimal amount, String status, LocalDateTime createdAt) {
+	public Order(Long id, String order_id, User user, BigDecimal amount, String status, LocalDateTime createdAt, String fulfillmentId) {
 		super();
 		this.id = id;
 		this.orderId = order_id;
@@ -31,6 +32,7 @@ public class Order {
 		this.amount = amount;
 		this.status = status;
 		this.createdAt = createdAt;
+		this.fulfillmentId = fulfillmentId;
 	}
 
 
@@ -111,6 +113,17 @@ public class Order {
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+	
+	public String getFulfillmentId() {
+		return fulfillmentId;
+	}
+
+
+
+	public void setFulfillmentId(String fulfillmentId) {
+		this.fulfillmentId = fulfillmentId;
+	}
+
 
 
 
@@ -132,8 +145,13 @@ public class Order {
 	@Column(nullable = false)
 	private String status;
 	
+	@Column(name ="fullfillment_id")
+    private String fulfillmentId;
+
 	
 	
+
+
 	@Column(nullable = false)
     private LocalDateTime createdAt;
 

@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.wallet.transaction.dto.response.OrderCreationResponse;
 import com.wallet.transaction.entities.Order;
@@ -32,6 +33,9 @@ public class OrderServiceImpl implements OrderService {
     private  WalletRepository walletRepository;
 	@Autowired
     private  OrderRepository orderRepository;
+	
+	@Autowired
+	private RestTemplate restTemplate = new RestTemplate();
 
 	
 	
@@ -69,13 +73,21 @@ public class OrderServiceImpl implements OrderService {
         walletRepository.save(wallet);
         
         
+        String fulfillmentId = restTemplate.postForObject(
+                "https://jsonplaceholder.typicode.com/posts",
+                null,
+                String.class
+        );
+        
         Order order = new Order();
         order.setOrder_id(UUID.randomUUID().toString());
         order.setUser(user);
         order.setAmount(amount);
         order.setStatus("CREATED");
         order.setCreatedAt(LocalDateTime.now());
-
+        order.setFulfillmentId(fulfillmentId);
+      
+        
         orderRepository.save(order);
 
         
@@ -84,7 +96,8 @@ public class OrderServiceImpl implements OrderService {
         return new OrderCreationResponse(
                 order.getOrder_id(),
                 order.getAmount(),
-                order.getStatus()
+                order.getStatus(),
+                order.getFulfillmentId()
         );
 
 		
@@ -106,7 +119,8 @@ public class OrderServiceImpl implements OrderService {
         return new OrderCreationResponse(
                 order.getOrder_id(),
                 order.getAmount(),
-                order.getStatus()
+                order.getStatus(),
+                order.getFulfillmentId()
         );
     }
 

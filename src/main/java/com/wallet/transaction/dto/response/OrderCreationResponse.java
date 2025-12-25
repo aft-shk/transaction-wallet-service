@@ -2,6 +2,7 @@ package com.wallet.transaction.dto.response;
 
 import java.math.BigDecimal;
 
+
 public class OrderCreationResponse {
 	
 	public String getOrderId() {
@@ -32,19 +33,35 @@ public class OrderCreationResponse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	public String getFulfillmentId() {
+		return fulfillmentId;
+	}
+
+
+	public void setFulfillmentId(String fulfillmentId) {
+		this.fulfillmentId = fulfillmentId;
+	}
+	
 
 
 	private String orderId;
     private BigDecimal amount;
     private String status;
+    private String fulfillmentId;
+
     
     
-    public OrderCreationResponse(String orderId, BigDecimal amount, String status ) {
+    public OrderCreationResponse(String orderId, BigDecimal amount, String status, String fulfillmentId) {
     	this.orderId = orderId;
     	this.amount=amount;
     	this.status = status;
-    	
+    	this.fulfillmentId = fulfillmentId;
     }
+
+
+	
 
 }
 
